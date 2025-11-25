@@ -472,7 +472,7 @@ async function sendMessage() {
 
     try {
         /* IMPORTANT: match JuliaBaucherCV backend schema: only { message } */
-        const res = await fetch('https://mjnq8gk6vh.execute-api.eu-north-1.amazonaws.com/prod/chat', {
+        const res = await fetch('https://pfsw63h3ra.execute-api.eu-central-1.amazonaws.com/prod/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: text })
@@ -532,3 +532,4 @@ sendBtn.addEventListener('click', sendMessage);
 </script>
 </body>
 </html>
+
