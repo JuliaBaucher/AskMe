@@ -35,15 +35,18 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .header-left {
+              .header-left {
             display: flex;
             align-items: center;
         }
 
-        .logo {
-            height: 40px;
-            width: auto;
+        .header-logo {
+            height: 40px;      /* controls how tall the logo is */
+            width: auto;       /* keep aspect ratio */
+            object-fit: contain;
+            margin-right: 10px; /* small spacing before the text */
         }
+
 
         .header-right {
             color: #232F3E;
@@ -363,15 +366,20 @@
 
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="header-left">
-            <img src="amazon-logo.png" class="header-logo" alt="Amazon logo" />
-        </div>
-        <div class="header-right">
-            AskMe - AI assistant to explain the VSP and Vesper forecasting models
-        </div>
-    </header>
 
+    
+<header class="header">
+    <div class="header-left">
+        <img src="amazon-logo.png" class="header-logo" alt="AskMe logo" />
+    </div>
+    <div class="header-right">
+        AskMe - AI assistant to explain the VSP and Vesper forecasting models
+    </div>
+</header>
+
+
+
+    
     <!-- Intro Section -->
     <section class="intro-section">
         <h1 class="intro-title">Understand everything about VSP and VESPER forecasts</h1>
@@ -532,4 +540,5 @@ sendBtn.addEventListener('click', sendMessage);
 </script>
 </body>
 </html>
+
 
