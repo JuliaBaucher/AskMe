@@ -70,16 +70,14 @@
         }
 
         /* Intro Section */
-        .intro-section {
-            position: fixed;
-            top: 65px;
-            left: 0;
-            right: 0;
-            background-color: #FFFFFF;
-            padding: 20px 30px;
-            border-bottom: 2px solid #FF9900;
-            z-index: 999;
-        }
+.intro-section {
+    margin-top: 65px;
+    background-color: #FFFFFF;
+    padding: 20px 30px;
+    border-bottom: 2px solid #FF9900;
+    z-index: 1;
+}
+
 
         .intro-title {
             font-size: 24px;
@@ -94,19 +92,20 @@
         }
 
         /* Chat Container */
-        .chat-container {
-            position: fixed;
-            top: 150px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            background-color: #FFFFFF;
-            max-width: 1400px;
-            margin: 0 auto;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
+       .chat-container {
+    position: fixed;
+    top: 180px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
 
         /* Messages Area */
         .messages-area {
@@ -573,6 +572,7 @@ sendBtn.addEventListener('click', sendMessage);
 </script>
 </body>
 </html>
+
 
 
 
