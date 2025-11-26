@@ -287,212 +287,161 @@ Frontend displays the assistant’s answer.
 
 # 10. Prompt
 
-Prompt:
-
-Design and implement a clean, modern HTML page for an internal Amazon support chatbot. The page is fully dedicated to the chatbot experience.
-
-Purpose & Context
-
-This tool is for Amazon employees to get insights on how forecasting models work. 
-
-The tone should be professional, friendly, and efficient, reflecting Amazon’s internal product style.
-
-The layout must make the chat experience the clear focus of the page.
-
-Layout & Structure
-
-Header (Top Bar)
-
-Left: Amazon logo (assume a provided logo image, e.g. amazon-logo.png).
-
-Use alt text like: "Amazon logo".
-
-Right: Small text label such as: “AskMe - AI assistant to expplain the VSP and Vesper forecasting models ”.
-
-Background: subtle, light tone; keep it minimal and non-distracting.
-
-Header should stay fixed at the top on scroll.
-
-Intro Section (Above the Chat, Short & Simple)
-
-A narrow content strip below the header with:
-
-A short title, e.g.: “Understand everything about VSP and VESPER forecasts”.
-
-2–3 short sentences explaining the tool, for example:
-
-“This is an AI assistant to explain the VSP and Vesper forecasting models ”
-
-“Ask a question in natural language and get quick, AI-powered answers.”
-
-
-
-Add 3 small hint chips or bullet examples, e.g.:
-
-“WHat is VSP and VEPSER?”
-“WHat causes accuracy issues in the preductions? ”
-“WHat actions are required to be taken to improve accuracy? ”
-
-
-
-Main Chat Area (The Focus)
-
-The chat area should dominate the page (especially on desktop).
-
-Use a two-part layout:
-
-A large chat window occupying most of the viewport.
-
-A message input bar fixed at the bottom of the chat area.
-
-Chat window behavior:
-
-Show conversation as stacked message bubbles:
-
-User messages right-aligned.
-
-Assistant messages left-aligned, with a subtle icon or avatar indicating “bot”.
-
-Use clear visual contrast between user and bot bubbles.
-
-Support scroll for longer conversations (chat area should be vertically scrollable, not the whole page where possible).
-
-Empty state:
-
-When there is no conversation yet, show soft placeholder text like:
-
-“Ask any questions about the VSP and VESPER forecasting models”
-
-Input Area
-
-A wide text input field at the bottom of the chat panel.
-
-Placeholder text: “Type your question about the VSP and VESPER forecasting models…”.
-
-A primary Send button to the right (icon of a paper plane is fine).
-
-Hitting Enter sends the message; Shift+Enter creates a new line.
-
-
-
-Status & Error Feedback
-
-When the assistant is thinking / waiting for backend response:
-
-Show a small “Assistant is thinking…” indicator in the chat area (e.g. animated dots bubble).
-
-On network/API error:
-
-Show a friendly inline error message in the chat panel:
-
-“Something went wrong contacting the support assistant. Please try again.”
-
-Keep the user’s input in the field so they can resend easily.
-
-Footer (Optional, Very Minimal)
-
-A very small footer line:
-
-“For urgent or sensitive issues, contact your usual support channels.”
-
-Keep it understated and non-distracting.
-
-Visual Style & UX Details
-
-Use a simple, enterprise-friendly design:
-
-Light background, high contrast text.
-
-Rounded corners on chat bubbles and input.
-
-Generous spacing; avoid clutter.
-
-Typography:
-
-Clean sans-serif font.
-
-Title slightly larger; body text normal size; hints maybe slightly smaller.
-
-Colors:
-
-Neutral base (whites / light grays).
-
-Accent color(s) can be inspired by Amazon’s brand (e.g. subtle orange for buttons or highlights), but do not make the page loud.
-
-Make it fully responsive:
-
-On desktop: the chat area should be large and centered, with a reasonable max width.
-
-On mobile: the chat should use almost the full screen width; header remains visible; input bar is easy to tap.
-
-Behavior & API Integration
-
-The page must be a standalone HTML file using vanilla JS (no frameworks required unless you choose a very lightweight approach).
-
-On “Send”:
-
-Immediately render the user’s message bubble in the chat window.
-
-Then call a backend API over HTTPS.
-
-API Contract:
-
-Use fetch to POST to a chat endpoint, e.g.:
-
-POST /chat
-
-Headers:
-
-Content-Type: application/json
-
-Request body JSON:
-
-{ "message": "<user message text>" }
-
-
-The backend uses Amazon Bedrock; the frontend should not expose any internal model names.
-
-Expected success response (JSON):
-
-{ "reply": "<assistant answer>" }
-
-
-On success:
-
-Append the assistant’s reply as a new message bubble.
-
-Scroll the chat view to the bottom.
-
-On error (non-200 or network failure):
-
-Show an assistant-style bubble with an error message.
-
-Optionally allow a quick “Try again” action that resends the last user message.
-
-Accessibility
-
-Use semantic HTML where possible.
-
-Ensure sufficient color contrast for text and buttons.
-
-Support keyboard navigation:
-
-Tab between input and send button.
-
-Enter to send / Shift+Enter for new line.
-
-Add aria-label attributes on buttons and important interactive elements (e.g. “Send message to support assistant”).
-
-Deliverables
-
-A single index.html file with:
-
-Inline or linked CSS.
-
-JavaScript embedded or linked (clear structure).
-
-Code should be readable and easy to adapt:
-
-Clearly mark where to configure the API URL.
-
-Add comments explaining main sections (header, intro, chat, API call, error handling).
+# UX Design Prompt: Amazon Internal Support Chatbot
+
+## Project Overview
+Design a professional, user-friendly HTML page for Amazon's internal employee support chatbot named "AskMe". This tool is specifically designed to help Amazon employees understand how VSP (Vendor Sourcing Portal) and VESPER forecasting models work. The page should be fully dedicated to the chatbot experience and serve as an educational resource for forecasting insights. This page should fetch an API to call the backend. 
+fetch("https://mjnq8gk6vh.execute-api.eu-north-1.amazonaws.com/prod/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: userText })
+});
+
+
+Return HTML in one editor block.
+
+## Key Requirements
+
+### Visual Identity
+- Incorporate Amazon's official logo prominently in the header
+- Use Amazon's brand colors: primarily Amazon Orange (#FF9900) and black/dark gray
+- Maintain a clean, professional aesthetic that aligns with Amazon's internal tools
+- Ensure the design feels trustworthy and authoritative
+
+### Layout & Structure
+- **Chat-First Design**: The chat interface should dominate the page (occupy 75-85% of viewport)
+- **Fixed Header**: Sticky top bar containing:
+  - Amazon logo on the left (use `amazon-logo.png` with alt text "Amazon logo")
+  - Tool name/title on the right: "AskMe - AI assistant to explain the VSP and Vesper forecasting models"
+  - Subtle, light background that doesn't distract from content
+- **Brief Intro Section**: Narrow content strip immediately below header with:
+  - Short, impactful title: "Understand everything about VSP and VESPER forecasts"
+  - Optional: 1-2 sentence description of what the chatbot can help with
+  - Minimal height to maximize chat window space
+- **Dominant Chat Window**: Full-height, scrollable chat interface below intro
+- **Responsive Design**: Primarily optimized for desktop monitors (internal tool)
+
+### Chat Interface Components
+- Clear message input field with send button
+- Scrollable message history with distinct styling for:
+  - User messages (right-aligned, different background)
+  - Bot responses (left-aligned, different background)
+- Timestamp indicators
+- Typing indicator when bot is processing
+- Loading states for API calls
+- Error handling UI for failed requests
+
+### Content & Messaging
+**Primary Use Case**: Educational tool for understanding forecasting models
+- What the chatbot can help with:
+  - Explaining how VSP forecasting models work
+  - Clarifying VESPER model methodology
+  - Answering technical questions about forecasting logic
+  - Providing insights into model parameters and outputs
+- Availability: Real-time AI-powered responses via AWS Bedrock backend
+
+**Intro Section Content**:
+- Title: "Understand everything about VSP and VESPER forecasts"
+- Brief subtitle (optional): "Ask me anything about how our forecasting models work"
+
+### Technical Integration
+- API integration with AWS Bedrock backend (following patterns from provided README files)
+- Backend API endpoint structure similar to index.html implementation in documentation
+- RESTful API calls with proper headers and authentication
+- Request format should match:
+  ```javascript
+  {
+    "message": "user question",
+    "sessionId": "unique-session-id",
+    // additional parameters as per README
+  }
+  ```
+- Proper error handling and retry logic
+- Loading states during API requests
+- Message streaming support if the backend provides it (typical for Bedrock responses)
+- Session management to maintain conversation context
+
+### User Experience Features
+- Auto-focus on input field when page loads
+- Enter key to send messages
+- Clear conversation button
+- Smooth scrolling to latest message
+- Visual feedback for all interactions
+- Accessible design (keyboard navigation, screen reader support)
+
+### Tone & Voice
+- **Professional yet approachable**: This is an internal educational tool, not customer-facing
+- **Friendly and efficient**: Reflecting Amazon's internal product style
+- **Technical but accessible**: Can discuss complex forecasting concepts clearly
+- **Helpful and solution-oriented**: Focused on helping employees understand models
+- **Aligned with Amazon's Leadership Principles**: Learn and Be Curious, Dive Deep
+- Clear and concise messaging that respects employees' time
+
+## Design Specifications
+
+### Page Structure
+1. **Header (Fixed Top Bar)**
+   - Height: 60-70px
+   - Left side: Amazon logo (amazon-logo.png, ~40px height)
+   - Right side: Tool identifier "AskMe - AI assistant to explain the VSP and Vesper forecasting models"
+   - Background: Subtle light tone (#FAFAFA or similar)
+   - Stays fixed on scroll
+
+2. **Intro Section (Minimal)**
+   - Max height: 80-100px
+   - Centered or left-aligned title: "Understand everything about VSP and VESPER forecasts"
+   - Optional brief description below title
+   - Clear visual separation from chat area
+
+3. **Chat Interface (Primary Focus)**
+   - Occupies remaining viewport height (calc(100vh - header - intro))
+   - Fixed height with internal scroll
+   - Message bubbles clearly differentiated
+   - Input area fixed at bottom of chat container
+
+### Recommended Color Palette
+- Primary: Amazon Orange (#FF9900)
+- Secondary: Amazon Black (#232F3E)
+- Background: White (#FFFFFF) or light gray (#F5F5F5)
+- Chat bubbles: Light blue (#E3F2FD) for bot, light gray (#F1F1F1) for user
+- Text: Dark gray (#333333) for primary, medium gray (#666666) for secondary
+
+### Typography
+- Clean, readable sans-serif font (Arial, Helvetica, or Amazon Ember if available)
+- Clear hierarchy between headers, body text, and chat messages
+- Minimum 14px font size for body text, 16px for chat messages
+
+### Spacing & Layout
+- Generous whitespace to reduce cognitive load
+- Clear separation between introduction and chat interface
+- Comfortable padding around chat messages
+- Minimum 44px touch targets for interactive elements
+
+### Interactive States
+- Hover effects on buttons
+- Focus states for keyboard navigation
+- Disabled states when processing
+- Loading animations that don't distract
+
+## Success Metrics
+The design should optimize for:
+- Quick time-to-first-interaction
+- Clear understanding of chatbot capabilities
+- Minimal friction in sending messages
+- Professional appearance that builds trust
+- Fast perceived performance
+
+## Implementation Notes
+- Single HTML file with embedded CSS and JavaScript
+- Use Fetch API for backend communication
+- Handle authentication tokens if required by Bedrock API
+- Implement proper CORS handling
+- Add error boundaries for API failures
+- Consider rate limiting on client side
+
+## Out of Scope (Future Enhancements)
+- Multi-language support
+- File upload capabilities
+- Conversation history persistence
+- User authentication UI
+- Analytics dashboard
