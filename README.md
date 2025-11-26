@@ -22,11 +22,12 @@ operations.
 
 # 2. High-Level Architecture
 
-+----------------------------------------------------+
-| GitHub Pages Frontend |
-| - index.html (Chat UI) |
-| - admin.html (KB Upload UI) |
-+-----------------------------+----------------------+
++----------------------------------------------------+ 
+
+| GitHub Pages Frontend | 
+| - index.html (Chat UI) | 
+| - admin.html (KB Upload UI) | 
++-----------------------------+----------------------+ 
 |
 | HTTPS
 v
@@ -70,7 +71,9 @@ v
 | - Claude 3.5 Sonnet (chat) |
 | - Titan Embeddings G1 Text |
 +---------------------------------------------------------+
-------------------------------------------------------------------------
+
+
+
 
 # 3. AWS Resources Required
 
