@@ -22,98 +22,55 @@ operations.
 
 # 2. High-Level Architecture
 
-+----------------------------------------------------+ 
-
-| GitHub Pages Frontend | 
-
-| - index.html (Chat UI) | 
-
-| - admin.html (KB Upload UI) | 
-
-+-----------------------------+----------------------+ 
-
-|
-
-| HTTPS
+────────────────────────────────────────┐ │ GitHub Pages Frontend │ │ - index.html (Chat UI) │ │ - admin.html (KB Upload UI) │ └───────────────────┬────────────────────┘ │ HTTPS ▼ ┌────────────────────────────────────────┐ │ API Gateway (HTTP API) │ │ /chat /upload │ └──────────────┬───────────────┬─────────┘ │ │ │ │ (Bearer Admin Token) │ ▼ │ ┌────────────────────────────┐ │ │ Lambda: AdminUpload │ │ │ - Stores files in S3 │ │ └──────────────┬────────────┘ │ │ │ ▼ Trigger │ ┌────────────────────────────┐ │ │ Lambda: EmbeddingBuilder │ │ │ - Chunk + embed using │ │ │ Amazon Titan Embeddings │ │ └──────────────┬────────────┘ │ │ │ ▼ │ S3 Bucket (Knowledge Base) │ raw/.md embeddings/.json │ ▼ ┌──────────────────────────────────────────┐ │ Lambda: ChatBackend (RAG + Bedrock LLM) │ │ - Loads embeddings │ │ - Vector similarity search │ │ - Calls Claude / Titan │ └───────────────────┬──────────────────────┘ ▼ ┌──────────────────────────────┐ │ Amazon Bedrock Foundation │ │ Models: │ │ - Claude 3.5 Sonnet (chat) │ │ - Titan Embeddings G1 Text │ └──────────────────────────────┘
 
 
 
-+----------------------------------------------------+
+┌────────────────────────────────────────┐  
+│ GitHub Pages Frontend │  
+│ - index.html (Chat UI) │  
+│ - admin.html (KB Upload UI) │  
+└───────────────────┬────────────────────┘   
 
-| API Gateway (HTTP API) |
-
-| Routes: /chat /upload |
-
-+------------------+------------------+--------------+
-
-| |
-
-| | (Bearer Admin Token)
-
-| 
-
-| +----------------------------+
-
-| | Lambda: AdminUpload |
-
-| | - Stores files in S3 |
-
-| +--------------+-------------+
-
-| |
-| v (S3 Trigger)
-
-| +----------------------------+
-
-| | Lambda: EmbeddingBuilder |
-
-| | - Chunk + embed using |
-
-| | Amazon Titan Embeddings |
-
-| +--------------+-------------+
-
-| |
-
-
-| +--------------------------+
-
-| | S3 Knowledge Base |
-
-| | - kb/raw/.md |
-
-| | - kb/embeddings/.json |
-
-| +------------+-------------+
-
-| |
-
-+---------------------------------------------------------+
-
-| Lambda: ChatBackend (RAG + Bedrock LLM) |
-
-| - Loads embeddings |
-
-| - Vector similarity search |
-
-| - Calls Claude / Titan |
-
-+----------------------------+----------------------------+
-
-|
-
-+---------------------------------------------------------+
-
-| Amazon Bedrock Foundation Models |
-
-| - Claude 3.5 Sonnet (chat) |
-
-| - Titan Embeddings G1 Text |
-
-+---------------------------------------------------------+
-
-
-
+│ HTTPS
+▼
+┌────────────────────────────────────────┐
+│ API Gateway (HTTP API) │
+│ /chat /upload │
+└──────────────┬───────────────┬─────────┘
+│ │
+│ │ (Bearer Admin Token)
+│ ▼
+│ ┌────────────────────────────┐
+│ │ Lambda: AdminUpload │
+│ │ - Stores files in S3 │
+│ └──────────────┬────────────┘
+│ │
+│ ▼ Trigger
+│ ┌────────────────────────────┐
+│ │ Lambda: EmbeddingBuilder │
+│ │ - Chunk + embed using │
+│ │ Amazon Titan Embeddings │
+│ └──────────────┬────────────┘
+│ │
+│ ▼
+│ S3 Bucket (Knowledge Base)
+│ raw/.md embeddings/.json
+│
+▼
+┌──────────────────────────────────────────┐
+│ Lambda: ChatBackend (RAG + Bedrock LLM) │
+│ - Loads embeddings │
+│ - Vector similarity search │
+│ - Calls Claude / Titan │
+└───────────────────┬──────────────────────┘
+▼
+┌──────────────────────────────┐
+│ Amazon Bedrock Foundation │
+│ Models: │
+│ - Claude 3.5 Sonnet (chat) │
+│ - Titan Embeddings G1 Text │
+└──────────────────────────────┘
 
 
 # 3. AWS Resources Required
