@@ -40,14 +40,29 @@
             align-items: center;
         }
 
-        .header-logo {
+    <!--    .header-logo {
             height: 40px;      /* controls how tall the logo is */
             width: auto;       /* keep aspect ratio */
             object-fit: contain;
             margin-right: 10px; /* small spacing before the text */
-        }
+        } -->
+
+.header-logo {
+    height: 80px;   /* twice as big as before */
+    width: auto;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.header {
+    height: 90px;   /* increased header height so logo fits comfortably */
+    padding: 0 30px;
+}
 
 
+
+
+        
         .header-right {
             color: #232F3E;
             font-size: 16px;
@@ -318,7 +333,9 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 768px) 
+        
+        {
             .header {
                 padding: 0 15px;
             }
@@ -360,7 +377,23 @@
             .btn {
                 width: 100%;
             }
+
+.header-logo {
+        height: 45px;    /* auto-scale down for phones */
+    }
+
+    .header {
+        height: 70px;    /* match reduced logo */
+    }
+
+
+            
         }
+
+
+
+
+        
     </style>
 </head>
 
@@ -540,5 +573,6 @@ sendBtn.addEventListener('click', sendMessage);
 </script>
 </body>
 </html>
+
 
 
