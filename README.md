@@ -25,52 +25,93 @@ operations.
 +----------------------------------------------------+ 
 
 | GitHub Pages Frontend | 
+
 | - index.html (Chat UI) | 
+
 | - admin.html (KB Upload UI) | 
+
 +-----------------------------+----------------------+ 
+
 |
+
 | HTTPS
-v
+
+
+
 +----------------------------------------------------+
+
 | API Gateway (HTTP API) |
+
 | Routes: /chat /upload |
+
 +------------------+------------------+--------------+
+
 | |
+
 | | (Bearer Admin Token)
-| v
+
+| 
+
 | +----------------------------+
+
 | | Lambda: AdminUpload |
+
 | | - Stores files in S3 |
+
 | +--------------+-------------+
+
 | |
 | v (S3 Trigger)
+
 | +----------------------------+
+
 | | Lambda: EmbeddingBuilder |
+
 | | - Chunk + embed using |
+
 | | Amazon Titan Embeddings |
+
 | +--------------+-------------+
+
 | |
-| v
+
+
 | +--------------------------+
+
 | | S3 Knowledge Base |
+
 | | - kb/raw/.md |
+
 | | - kb/embeddings/.json |
+
 | +------------+-------------+
+
 | |
-v v
+
 +---------------------------------------------------------+
+
 | Lambda: ChatBackend (RAG + Bedrock LLM) |
+
 | - Loads embeddings |
+
 | - Vector similarity search |
+
 | - Calls Claude / Titan |
+
 +----------------------------+----------------------------+
+
 |
-v
+
 +---------------------------------------------------------+
+
 | Amazon Bedrock Foundation Models |
+
 | - Claude 3.5 Sonnet (chat) |
+
 | - Titan Embeddings G1 Text |
+
 +---------------------------------------------------------+
+
 
 
 
