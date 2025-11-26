@@ -35,7 +35,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-              .header-left {
+        .header-left {
             display: flex;
             align-items: center;
         }
@@ -47,22 +47,18 @@
             margin-right: 10px; /* small spacing before the text */
         } -->
 
-.header-logo {
-    height: 80px;   /* twice as big as before */
-    width: auto;
-    object-fit: contain;
-    margin-right: 10px;
-}
+        .header-logo {
+            height: 80px;   /* twice as big as before */
+            width: auto;
+            object-fit: contain;
+            margin-right: 10px;
+        }
 
-.header {
-    height: 90px;   /* increased header height so logo fits comfortably */
-    padding: 0 30px;
-}
+        .header {
+            height: 90px;   /* increased header height so logo fits comfortably */
+            padding: 0 30px;
+        }
 
-
-
-
-        
         .header-right {
             color: #232F3E;
             font-size: 16px;
@@ -70,14 +66,13 @@
         }
 
         /* Intro Section */
-.intro-section {
-    margin-top: 65px;
-    background-color: #FFFFFF;
-    padding: 20px 30px;
-    border-bottom: 2px solid #FF9900;
-    z-index: 1;
-}
-
+        .intro-section {
+            margin-top: 90px; /* match the actual header height so it no longer overlaps */
+            background-color: #FFFFFF;
+            padding: 20px 30px;
+            border-bottom: 2px solid #FF9900;
+            z-index: 1;
+        }
 
         .intro-title {
             font-size: 24px;
@@ -92,20 +87,19 @@
         }
 
         /* Chat Container */
-       .chat-container {
-    position: fixed;
-    top: 180px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    max-width: 1400px;
-    margin: 0 auto;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-
+        .chat-container {
+            position: fixed;
+            top: 180px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #FFFFFF;
+            max-width: 1400px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
 
         /* Messages Area */
         .messages-area {
@@ -333,7 +327,6 @@
 
         /* Responsive Design */
         @media (max-width: 768px) 
-        
         {
             .header {
                 padding: 0 15px;
@@ -377,41 +370,28 @@
                 width: 100%;
             }
 
-.header-logo {
-        height: 45px;    /* auto-scale down for phones */
-    }
+            .header-logo {
+                height: 45px;    /* auto-scale down for phones */
+            }
 
-    .header {
-        height: 70px;    /* match reduced logo */
-    }
-
-
-            
+            .header {
+                height: 70px;    /* match reduced logo */
+            }
         }
-
-
-
-
-        
     </style>
 </head>
 
 <body>
     <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <img src="amazon-logo.png" class="header-logo" alt="AskMe logo" />
+        </div>
+        <div class="header-right">
+            AskMe - AI assistant to explain the VSP and Vesper forecasting models
+        </div>
+    </header>
 
-    
-<header class="header">
-    <div class="header-left">
-        <img src="amazon-logo.png" class="header-logo" alt="AskMe logo" />
-    </div>
-    <div class="header-right">
-        AskMe - AI assistant to explain the VSP and Vesper forecasting models
-    </div>
-</header>
-
-
-
-    
     <!-- Intro Section -->
     <section class="intro-section">
         <h1 class="intro-title">Understand everything about VSP and VESPER forecasts</h1>
@@ -572,7 +552,3 @@ sendBtn.addEventListener('click', sendMessage);
 </script>
 </body>
 </html>
-
-
-
-
